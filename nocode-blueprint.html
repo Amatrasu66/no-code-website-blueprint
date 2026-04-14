@@ -1,0 +1,1644 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zero to Website — No-Code Blueprint 2025</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap');
+
+:root {
+  --cream: #faf7f2;
+  --warm: #f5efe6;
+  --paper: #ede8df;
+  --ink: #1a1510;
+  --ink2: #3d3528;
+  --muted: #8c7d6b;
+  --faint: #c4b9a8;
+  --accent: #c8541a;
+  --accent2: #1a6b5c;
+  --accent3: #6b3fa0;
+  --gold: #b8870a;
+  --blue: #1a4a7a;
+  --red: #a01a2e;
+  --border: #ddd5c8;
+  --shadow: rgba(26,21,16,0.08);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  background: var(--cream);
+  color: var(--ink);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 15px;
+  line-height: 1.7;
+  overflow-x: hidden;
+}
+
+/* DECORATIVE BACKGROUND */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image:
+    radial-gradient(circle at 20% 20%, rgba(200,84,26,0.04) 0%, transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(26,107,92,0.04) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* HERO */
+.hero {
+  position: relative;
+  padding: 70px 48px 60px;
+  border-bottom: 1px solid var(--border);
+  overflow: hidden;
+  z-index: 1;
+}
+
+.hero-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 24px;
+}
+.hero-eyebrow::before, .hero-eyebrow::after {
+  content: '';
+  height: 1px;
+  width: 32px;
+  background: var(--accent);
+  opacity: 0.5;
+}
+
+.hero h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(36px, 5.5vw, 72px);
+  font-weight: 900;
+  line-height: 1.0;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  max-width: 800px;
+  margin-bottom: 20px;
+}
+.hero h1 em { color: var(--accent); font-style: italic; }
+
+.hero-desc {
+  max-width: 600px;
+  color: var(--muted);
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 1.8;
+}
+
+.hero-deco {
+  position: absolute;
+  right: 48px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-family: 'Playfair Display', serif;
+  font-size: 180px;
+  font-weight: 900;
+  color: var(--paper);
+  line-height: 1;
+  user-select: none;
+  pointer-events: none;
+}
+
+/* BIG PROMISE BAR */
+.promise-bar {
+  background: var(--ink);
+  color: var(--cream);
+  padding: 16px 48px;
+  display: flex;
+  gap: 40px;
+  flex-wrap: wrap;
+  border-bottom: 1px solid var(--border);
+}
+.promise-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+  font-weight: 500;
+}
+.promise-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); flex-shrink: 0; }
+
+/* NAV */
+.phase-nav {
+  display: flex;
+  border-bottom: 2px solid var(--border);
+  overflow-x: auto;
+  scrollbar-width: none;
+  background: var(--warm);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+.phase-nav::-webkit-scrollbar { display: none; }
+.nav-pill {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 22px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--muted);
+  cursor: pointer;
+  border-bottom: 3px solid transparent;
+  margin-bottom: -2px;
+  white-space: nowrap;
+  text-decoration: none;
+  transition: all 0.2s;
+  letter-spacing: 0.02em;
+}
+.nav-pill:hover { color: var(--ink); background: var(--paper); }
+.nav-pill.active { color: var(--accent); border-bottom-color: var(--accent); background: var(--cream); }
+.nav-num {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  background: currentColor;
+  color: var(--warm);
+  border-radius: 50%;
+  width: 18px; height: 18px;
+  display: flex; align-items: center; justify-content: center;
+}
+.nav-pill.active .nav-num { background: var(--accent); color: white; }
+
+/* CONTENT */
+.content { position: relative; z-index: 1; }
+
+/* PHASE */
+.phase {
+  padding: 56px 48px;
+  border-bottom: 1px solid var(--border);
+  scroll-margin-top: 52px;
+}
+
+.phase-header {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 28px;
+  align-items: start;
+  margin-bottom: 44px;
+}
+
+.phase-number-block {
+  text-align: center;
+  padding: 16px 20px;
+  border: 1.5px solid var(--border);
+  border-radius: 4px;
+  background: var(--warm);
+}
+.phase-number-block .num {
+  font-family: 'Playfair Display', serif;
+  font-size: 48px;
+  font-weight: 900;
+  line-height: 1;
+  color: var(--faint);
+}
+.phase-number-block .label {
+  font-family: 'DM Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-top: 4px;
+}
+
+.phase-title-block .tag {
+  display: inline-block;
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 3px 10px;
+  border-radius: 2px;
+  margin-bottom: 10px;
+}
+.phase-title-block h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(22px, 3vw, 38px);
+  font-weight: 700;
+  line-height: 1.15;
+  margin-bottom: 8px;
+}
+.phase-title-block p {
+  color: var(--muted);
+  font-size: 15px;
+  max-width: 680px;
+}
+
+/* SECTION */
+.section { margin-bottom: 40px; }
+.section-heading {
+  font-family: 'Playfair Display', serif;
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 18px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--ink2);
+}
+.section-heading .icon { font-size: 18px; }
+
+/* CARDS */
+.grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; }
+.grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; }
+
+.card {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 22px;
+  box-shadow: 0 2px 8px var(--shadow);
+}
+.card-title {
+  font-weight: 600;
+  font-size: 15px;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.card p, .card li { font-size: 13.5px; color: var(--ink2); line-height: 1.65; }
+.card ul { padding-left: 18px; }
+.card ul li { margin-bottom: 5px; }
+
+/* STEPS */
+.steps-list { display: flex; flex-direction: column; gap: 12px; }
+.step-item {
+  display: grid;
+  grid-template-columns: 44px 1fr;
+  gap: 16px;
+  align-items: start;
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 18px 20px;
+  box-shadow: 0 1px 4px var(--shadow);
+}
+.step-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 28px;
+  font-weight: 900;
+  color: var(--faint);
+  line-height: 1;
+  text-align: center;
+  padding-top: 2px;
+}
+.step-body h4 { font-size: 15px; font-weight: 600; margin-bottom: 5px; color: var(--ink); }
+.step-body p { font-size: 13.5px; color: var(--muted); }
+
+/* TOOL CARDS */
+.tool-section { margin-bottom: 40px; }
+.tool-type-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 3px;
+  display: inline-block;
+  margin-bottom: 12px;
+  margin-right: 8px;
+}
+.lbl-traditional { background: rgba(140,125,107,0.12); color: var(--muted); }
+.lbl-ai { background: rgba(200,84,26,0.1); color: var(--accent); }
+.lbl-emerging { background: rgba(26,107,92,0.1); color: var(--accent2); }
+.lbl-experimental { background: rgba(107,63,160,0.1); color: var(--accent3); }
+
+.tool-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 14px; }
+.tool-card {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 18px;
+  box-shadow: 0 1px 4px var(--shadow);
+  position: relative;
+  overflow: hidden;
+}
+.tool-card::after {
+  content: '';
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 3px;
+}
+.tool-card.t::after { background: var(--faint); }
+.tool-card.ai::after { background: var(--accent); }
+.tool-card.em::after { background: var(--accent2); }
+.tool-card.ex::after { background: var(--accent3); }
+
+.tool-name {
+  font-weight: 600;
+  font-size: 14px;
+  margin-bottom: 6px;
+  color: var(--ink);
+}
+.tool-badges { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 8px; }
+.badge {
+  font-family: 'DM Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 2px 7px;
+  border-radius: 2px;
+}
+.badge.free { background: rgba(26,107,92,0.12); color: var(--accent2); }
+.badge.paid { background: rgba(184,135,10,0.12); color: var(--gold); }
+.badge.freemium { background: rgba(200,84,26,0.1); color: var(--accent); }
+.badge.beginner { background: rgba(26,74,122,0.1); color: var(--blue); }
+.badge.nocode { background: rgba(26,107,92,0.15); color: var(--accent2); font-weight: 600; }
+.badge.advanced { background: rgba(160,26,46,0.1); color: var(--red); }
+.badge.experimental { background: rgba(107,63,160,0.1); color: var(--accent3); }
+
+.tool-desc { font-size: 12.5px; color: var(--muted); line-height: 1.55; }
+.tool-note { font-size: 11.5px; color: var(--faint); margin-top: 6px; font-style: italic; border-top: 1px solid var(--border); padding-top: 6px; }
+
+/* CALLOUTS */
+.callout-warn {
+  background: #fff8f5;
+  border: 1px solid rgba(200,84,26,0.25);
+  border-left: 4px solid var(--accent);
+  border-radius: 6px;
+  padding: 16px 18px;
+  margin: 16px 0;
+  font-size: 13.5px;
+  color: var(--ink2);
+}
+.callout-warn .clabel { font-size: 10px; font-family: 'DM Mono', monospace; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); font-weight: 500; display: block; margin-bottom: 5px; }
+
+.callout-tip {
+  background: #f3faf8;
+  border: 1px solid rgba(26,107,92,0.2);
+  border-left: 4px solid var(--accent2);
+  border-radius: 6px;
+  padding: 16px 18px;
+  margin: 16px 0;
+  font-size: 13.5px;
+  color: var(--ink2);
+}
+.callout-tip .clabel { font-size: 10px; font-family: 'DM Mono', monospace; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent2); font-weight: 500; display: block; margin-bottom: 5px; }
+
+.callout-gold {
+  background: #fefbf0;
+  border: 1px solid rgba(184,135,10,0.2);
+  border-left: 4px solid var(--gold);
+  border-radius: 6px;
+  padding: 16px 18px;
+  margin: 16px 0;
+  font-size: 13.5px;
+  color: var(--ink2);
+}
+.callout-gold .clabel { font-size: 10px; font-family: 'DM Mono', monospace; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); font-weight: 500; display: block; margin-bottom: 5px; }
+
+/* PROMPT BOX */
+.prompt-wrap { margin: 14px 0; }
+.prompt-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 6px;
+}
+.prompt-box {
+  background: var(--ink);
+  color: #d4c5b0;
+  border-radius: 6px;
+  padding: 18px 20px;
+  font-family: 'DM Mono', monospace;
+  font-size: 12px;
+  line-height: 1.65;
+  white-space: pre-wrap;
+}
+.prompt-box .ph { color: var(--accent); }
+
+/* TABLE */
+.simple-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  margin: 14px 0;
+}
+.simple-table th {
+  background: var(--warm);
+  border: 1px solid var(--border);
+  padding: 10px 14px;
+  text-align: left;
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  font-weight: 500;
+}
+.simple-table td {
+  border: 1px solid var(--border);
+  padding: 10px 14px;
+  vertical-align: top;
+  color: var(--ink2);
+  line-height: 1.5;
+}
+.simple-table tr:nth-child(even) td { background: #fdfcfa; }
+.simple-table td:first-child { font-weight: 500; color: var(--ink); }
+.rec { color: var(--accent2) !important; font-weight: 600 !important; }
+
+/* PHASE COLOR SYSTEM */
+.phase:nth-child(1) .phase-number-block .num { color: rgba(200,84,26,0.25); }
+.phase:nth-child(1) .phase-title-block .tag { background: rgba(200,84,26,0.1); color: var(--accent); }
+.phase:nth-child(2) .phase-number-block .num { color: rgba(26,107,92,0.2); }
+.phase:nth-child(2) .phase-title-block .tag { background: rgba(26,107,92,0.1); color: var(--accent2); }
+.phase:nth-child(3) .phase-number-block .num { color: rgba(107,63,160,0.2); }
+.phase:nth-child(3) .phase-title-block .tag { background: rgba(107,63,160,0.1); color: var(--accent3); }
+.phase:nth-child(4) .phase-number-block .num { color: rgba(26,74,122,0.2); }
+.phase:nth-child(4) .phase-title-block .tag { background: rgba(26,74,122,0.1); color: var(--blue); }
+.phase:nth-child(5) .phase-number-block .num { color: rgba(184,135,10,0.2); }
+.phase:nth-child(5) .phase-title-block .tag { background: rgba(184,135,10,0.1); color: var(--gold); }
+.phase:nth-child(6) .phase-number-block .num { color: rgba(160,26,46,0.2); }
+.phase:nth-child(6) .phase-title-block .tag { background: rgba(160,26,46,0.1); color: var(--red); }
+
+/* MASTER TABLE SECTION */
+.master-wrap {
+  padding: 56px 48px;
+  background: var(--warm);
+  scroll-margin-top: 52px;
+}
+.master-wrap h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 34px;
+  font-weight: 900;
+  margin-bottom: 6px;
+}
+.master-wrap .sub { color: var(--muted); font-size: 14px; margin-bottom: 28px; }
+
+.master-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  background: white;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px var(--shadow);
+}
+.master-table th {
+  background: var(--ink);
+  color: var(--cream);
+  padding: 12px 16px;
+  text-align: left;
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+.master-table td {
+  border-bottom: 1px solid var(--border);
+  padding: 11px 16px;
+  vertical-align: top;
+  line-height: 1.5;
+  color: var(--ink2);
+}
+.master-table tr:last-child td { border-bottom: none; }
+.master-table tr:hover td { background: #fdfcfa; }
+.phase-pill {
+  display: inline-block;
+  font-family: 'DM Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 3px 8px;
+  border-radius: 3px;
+  font-weight: 500;
+}
+.tools-mono { font-family: 'DM Mono', monospace; font-size: 11px; }
+.output-green { color: var(--accent2); font-weight: 500; font-size: 12px; }
+
+/* FOOTER */
+.footer {
+  padding: 44px 48px;
+  border-top: 2px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  background: var(--cream);
+}
+.footer-title { font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 700; }
+.footer-sub { color: var(--muted); font-size: 13px; margin-top: 3px; }
+.footer-mono { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--faint); }
+
+/* DIVIDER */
+.divider { height: 1px; background: linear-gradient(90deg, transparent, var(--border), transparent); margin: 32px 0; }
+
+/* BIG CHECKLIST */
+.checklist { display: flex; flex-direction: column; gap: 8px; }
+.check-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 12px 16px;
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  font-size: 13.5px;
+  color: var(--ink2);
+}
+.check-box {
+  width: 20px; height: 20px;
+  border: 2px solid var(--border);
+  border-radius: 4px;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+/* AI HIGHLIGHT BOX */
+.ai-box {
+  background: linear-gradient(135deg, #fff8f5 0%, #f3faf8 100%);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 24px;
+  margin: 20px 0;
+}
+.ai-box h4 { font-family: 'Playfair Display', serif; font-size: 18px; font-weight: 700; margin-bottom: 12px; }
+.ai-box p { font-size: 13.5px; color: var(--ink2); margin-bottom: 8px; }
+
+/* COMPARISON HIGHLIGHT */
+.highlight-row { background: rgba(26,107,92,0.06) !important; }
+.highlight-row td:first-child { color: var(--accent2) !important; }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-deco">∞</div>
+  <div class="hero-eyebrow">Zero to Website · Complete Blueprint · 2025–2026</div>
+  <h1>Build a Real Website.<br><em>No Coding Required.</em></h1>
+  <p class="hero-desc">A practical, step-by-step system for absolute beginners. If you can type, copy, paste, and click — you have everything you need. AI does the technical work. You provide the idea.</p>
+</div>
+
+<!-- PROMISE BAR -->
+<div class="promise-bar">
+  <div class="promise-item"><div class="promise-dot"></div>No coding knowledge needed</div>
+  <div class="promise-item"><div class="promise-dot"></div>Real websites, not toy demos</div>
+  <div class="promise-item"><div class="promise-dot"></div>Free tools to start</div>
+  <div class="promise-item"><div class="promise-dot"></div>Works for any niche</div>
+  <div class="promise-item"><div class="promise-dot"></div>Monetization included</div>
+</div>
+
+<!-- NAV -->
+<div class="phase-nav">
+  <a class="nav-pill active" href="#p1"><span class="nav-num">1</span>Find Your Idea</a>
+  <a class="nav-pill" href="#p2"><span class="nav-num">2</span>Plan It</a>
+  <a class="nav-pill" href="#p3"><span class="nav-num">3</span>Build It</a>
+  <a class="nav-pill" href="#p4"><span class="nav-num">4</span>Design It</a>
+  <a class="nav-pill" href="#p5"><span class="nav-num">5</span>Launch It</a>
+  <a class="nav-pill" href="#p6"><span class="nav-num">6</span>Grow It</a>
+  <a class="nav-pill" href="#master"><span class="nav-num">★</span>Master Plan</a>
+</div>
+
+<!-- CONTENT -->
+<div class="content">
+
+<!-- ===================== PHASE 1 ===================== -->
+<div class="phase" id="p1">
+  <div class="phase-header">
+    <div class="phase-number-block"><div class="num">01</div><div class="label">Phase</div></div>
+    <div class="phase-title-block">
+      <span class="tag">Where Every Website Begins</span>
+      <h2>Find Your Idea</h2>
+      <p>The biggest mistake beginners make is spending months building something nobody wants. Spend one week here and skip that entire mistake.</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-heading"><span class="icon">💡</span>What Makes a Good Website Idea?</div>
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-title">✅ Good Ideas Share These 3 Things</div>
+        <ul>
+          <li><strong>A real problem</strong> — People are already complaining about it somewhere online</li>
+          <li><strong>A reachable audience</strong> — You can find where these people spend time</li>
+          <li><strong>A reason to pay</strong> — Someone already pays for a clunky version of this</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title">❌ Avoid These Common Traps</div>
+        <ul>
+          <li>"I'll build a social network" — too big, too late</li>
+          <li>"My idea is completely unique" — usually means no market</li>
+          <li>"I'll figure out money later" — figure it out now</li>
+          <li>Copying a billion-dollar app exactly — you can't compete on scale</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-heading"><span class="icon">🗺️</span>3 Types of Website You Can Build (Pick One)</div>
+    <div class="grid-3">
+      <div class="card">
+        <div class="card-title">📝 Content Website</div>
+        <p style="margin-bottom:8px;"><strong>What it is:</strong> A blog, tutorial site, or niche information hub.</p>
+        <p style="margin-bottom:8px;"><strong>Example:</strong> "Recipes for people with diabetes" or "How to pass the IELTS exam"</p>
+        <p><strong>Make money:</strong> Ads + affiliate links + digital guides</p>
+      </div>
+      <div class="card">
+        <div class="card-title">🔧 Tool Website</div>
+        <p style="margin-bottom:8px;"><strong>What it is:</strong> A free utility that does one specific thing.</p>
+        <p style="margin-bottom:8px;"><strong>Example:</strong> "PDF to Word converter" or "Business name generator"</p>
+        <p><strong>Make money:</strong> Ads + paid "pro" version</p>
+      </div>
+      <div class="card">
+        <div class="card-title">🏪 Niche Marketplace / Directory</div>
+        <p style="margin-bottom:8px;"><strong>What it is:</strong> A curated list of resources, people, or businesses.</p>
+        <p style="margin-bottom:8px;"><strong>Example:</strong> "Directory of freelance illustrators in India"</p>
+        <p><strong>Make money:</strong> Featured listings + subscriptions</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-heading"><span class="icon">🔍</span>How to Validate Your Idea in 48 Hours</div>
+    <div class="steps-list">
+      <div class="step-item">
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <h4>Ask AI to brainstorm 20 ideas for you</h4>
+          <p>Open ChatGPT or Claude. Tell it your interests, skills, and the type of website you want. Ask it to generate 20 specific niche ideas with monetization paths. Pick the 3 that excite you most.</p>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <h4>Search for it on Reddit</h4>
+          <p>Go to reddit.com and search your idea. Look for posts where people ask "is there a tool that does X?" or "why is there no website for Y?" Real complaints = real demand. This takes 20 minutes and tells you everything.</p>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">3</div>
+        <div class="step-body">
+          <h4>Check if anyone is searching for it</h4>
+          <p>Go to Google and type your idea. Look at the autocomplete suggestions — each one is a real thing people search for. Then check ubersuggest.com (free) to see how many monthly searches exist.</p>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">4</div>
+        <div class="step-body">
+          <h4>Find 3 competitors — that's good news, not bad</h4>
+          <p>If competitors exist, money exists in this space. Visit each competitor, read their reviews on G2 or Capterra, and find what users are angry about. Those complaints are your features.</p>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">5</div>
+        <div class="step-body">
+          <h4>Write one sentence that describes your website</h4>
+          <p>Fill in this template: "My website helps [specific type of person] to [do specific thing] without [the painful thing they hate]." If you can't complete this sentence, your idea isn't clear enough yet.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="callout-gold">
+    <span class="clabel">Real Example</span>
+    "I noticed parents of kids with ADHD kept asking on Reddit about homework planners. I searched it — 8,000 monthly searches, weak competitors. My website: a free visual homework planner for kids with ADHD. Revenue: ads + a $5/month premium version."
+  </div>
+
+  <div class="section">
+    <div class="section-heading"><span class="icon">🤖</span>AI Tools for Phase 1</div>
+    <div class="tool-grid">
+      <div class="tool-card ai">
+        <div class="tool-name">ChatGPT</div>
+        <div class="tool-badges"><span class="badge ai">AI</span><span class="badge freemium">Freemium</span><span class="badge beginner">Beginner Friendly</span></div>
+        <div class="tool-desc">Your thinking partner. Ask it to brainstorm ideas, analyze competitors, write your one-sentence pitch, and create a list of potential customers. Think of it as a very fast research assistant.</div>
+        <div class="tool-note">⚡ Limitation: It doesn't have live data. Always verify numbers with real search tools.</div>
+      </div>
+      <div class="tool-card ai">
+        <div class="tool-name">Perplexity AI</div>
+        <div class="tool-badges"><span class="badge ai">AI</span><span class="badge freemium">Freemium</span><span class="badge beginner">Beginner Friendly</span></div>
+        <div class="tool-desc">Like ChatGPT but it searches the internet and shows sources. Use it to ask "what are the top tools for [your niche] in 2025?" and get current, cited answers.</div>
+      </div>
+      <div class="tool-card t">
+        <div class="tool-name">Google Trends</div>
+        <div class="tool-badges"><span class="badge free">Free</span><span class="badge beginner">Beginner Friendly</span></div>
+        <div class="tool-desc">Shows if interest in a topic is growing or shrinking over time. Type your idea and look at the 5-year graph. You want upward or stable trends, not a cliff.</div>
+      </div>
+      <div class="tool-card t">
+        <div class="tool-name">Ubersuggest (free tier)</div>
+        <div class="tool-badges"><span class="badge free">Free</span><span class="badge beginner">Beginner Friendly</span></div>
+        <div class="tool-desc">Type any topic and see how many people search for it per month. Even 500 searches/month is a viable niche if you're solving a real problem. Ignore the "SEO difficulty" score for now.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-heading"><span class="icon">💬</span>Copy-Paste AI Prompts</div>
+    <div class="prompt-wrap">
+      <div class="prompt-label">// Paste this into ChatGPT or Claude to get idea suggestions</div>
+      <div class="prompt-box">I want to build a website but I have no technical background. My interests are: <span class="ph">[your hobbies / things you know about]</span>. My available time per week is: <span class="ph">[e.g. 5 hours]</span>.
+
+Generate 15 specific website ideas I could build using only no-code AI tools. For each idea include:
+1. The exact type of person it helps
+2. The one problem it solves
+3. How it makes money
+4. Who the competitors are
+5. Why a beginner could realistically build it
+
+Make the ideas specific, not generic. "Fitness blog" is bad. "Workout plans for people over 50 with knee problems" is good.</div>
+    </div>
+    <div class="prompt-wrap">
+      <div class="prompt-label">// Paste this to validate a specific idea</div>
+      <div class="prompt-box">I'm thinking of building: <span class="ph">[describe your idea in one sentence]</span>.
+
+Act as a skeptical investor. Tell me:
+1. Who exactly is the target audience?
+2. Is there already a market for this? Who are the competitors?
+3. What's the most realistic way to make money from this?
+4. What's the biggest risk that could make this fail?
+5. What one thing would you change to make this more viable?
+
+Be honest, not encouraging. I'd rather hear problems now than after I've built it.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== PHASE 2 ===================== -->
+<div class="phase" id="p2">
+  <div class="phase-header">
+    <div class="phase-number-block"><div class="num">02</div><div class="label">Phase</div></div>
+    <div class="phase-title-block">
+      <span class="tag">Think Before You Build</span>
+      <h2>Plan Your Website</h2>
+      <p>Planning takes one day. Skipping planning costs you weeks of rebuilding things you got wrong. This phase is about making decisions on paper, not on screen.</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-heading"><span class="icon">📋</span>What to Decide Before You Build Anything</div>
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-title">🎯 Your MVP (Minimum Viable Product)</div>
+        <p style="margin-bottom:10px;">An MVP is the smallest version of your website that proves your idea works. It is NOT the finished product.</p>
+        <ul>
+          <li>Write down your idea's ONE core feature</li>
+          <li>Cross off everything that isn't that core feature</li>
+          <li>If it takes more than 4 weeks to build, it's not an MVP</li>
+          <li>Rule: if a stranger can use it and find value in 60 seconds, ship it</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title">💰 How Will You Make Money?</div>
+        <p style="margin-bottom:10px;">Decide this now, not after you launch. The way you make money changes how you build.</p>
+        <ul>
+          <li><strong>Ads</strong> — need high traffic (10k+ visits/month). Easiest to start.</li>
+          <li><strong>Affiliate</strong> — recommend products, earn commission. Best for content sites.</li>
+          <li><strong>Paid feature</strong> — free basic version, charge for power features.</li>
+          <li><strong>Digital product</strong> — sell a guide, template, or mini-course.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-heading"><span class="icon">📄</span>Pages Your Website Needs (and Nothing Else)</div>
+    <div class="steps-list">
+      <div class="step-item">
+        <div class="step-num">H</div>
+        <div class="step-body"><h4>Homepage</h4><p>One clear headline explaining what you do. One button telling visitors what to do next. No more, no less. This is not the place for a wall of text.</p></div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">T</div>
+        <div class="step-body"><h4>The Tool / Content Page</h4><p>The actual thing your website does. If it's a blog, this is your article. If it's a tool, this is the tool itself. This page does the work.</p></div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">A</div>
+        <div class="step-body"><h4>About Page</h4><p>One paragraph about who you are and why you built this. People trust humans, not faceless websites. A photo helps. Keep it short.</p></div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">C</div>
+        <div class="step-body"><h4>Contact Page</h4><p>A simple form or just your email address. Without this, you lose feedback, potential partners, and anyone who wants to pay you for a custom version.</p></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-heading"><span class="icon">🛣️</span>Your 30-Day Launch Plan</div>
+    <table class="simple-table">
+      <tr><th>Week</th><th>Goal</th><th>What You Do</th><th>What You Have at End</th></tr>
+      <tr><td>Week 1</td><td>Validate</td><td>Research idea, talk to 3 potential users, confirm monetization</td><td>✓ Confirmed idea + one-sentence pitch</td></tr>
+      <tr><td>Week 2</td><td>Build</td><td>Create your website using no-code tools (Framer / Webflow / Carrd)</td><td>✓ Working website live on the internet</td></tr>
+      <tr><td>Week 3</td><td>Content</td><td>Write your first 3 pieces of content or set up your core tool</td><td>✓ 3 published pages that can rank on Google</td></tr>
+      <tr><td>Week 4</td><td>Launch</td><td>Share in 3 communities, set up analytics, post on social media</td><td>✓ First 100 real visitors</td></tr>
+    </table>
+  </div>
+
+  <div class="callout-tip">
+    <span class="clabel">Rule of Thumb</span>
+    If you're still planning after 7 days, you're procrastinating. Imperfect and live beats perfect and not built. You will learn more in one day with real users than in one month of planning alone.
+  </div>
+
+  <div class="section">
+    <div class="section-heading"><span class="icon">🤖</span>AI Tools for Phase 2</div>
+    <div class="tool-grid">
+      <div class="tool-card ai">
+        <div class="tool-name">Notion AI</div>
+        <div class="tool-badges"><span class="badge ai">AI</span><span class="badge freemium">Freemium</span><span class="badge beginner">Beginner Friendly</span></div>
+        <div class="tool-desc">Use Notion as your project planning hub. Notion AI helps you create structured documents, generate content plans, and organize your thinking. Free tier is plenty.</div>
+      </div>
+      <div class="tool-card ai">
+        <div class="tool-name">Claude</div>
+        <div class="tool-badges"><span class="badge ai">AI</span><span class="badge freemium">Freemium</span><span class="badge beginner">Beginner Friendly</span></div>
+        <div class="tool-desc">Use to write your full website plan: all pages, content for each page, your monetization strategy, and a feature list. Ask it to format everything as a Notion-friendly document.</div>
+      </div>
+      <div class="tool-card em">
+        <div class="tool-name">Whimsical AI</div>
+        <div class="tool-badges"><span class="badge emerging">Emerging</span><span class="badge freemium">Freemium</span><span class="badge beginner">Beginner Friendly</span></div>
+        <div class="tool-desc">AI-powered flowchart and wireframe tool. Describe your website and it generates a visual sitemap. Useful for seeing the whole picture before you build anything.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== PHASE 3 ===================== -->
+<div class="phase" id="p3">
+  <div class="phase-header">
+    <div class="phase-number-block"><div class="num">03</div><div class="label">Phase</div></div>
+    <div class="phase-title-block">
+      <span class="tag">The Core Phase</span>
+      <h2>Build Your Website</h2>
+      <p>You do not need to write a single line of code. AI and no-code tools have made this genuinely achievable for anyone. This is the phase most people fear most — and it's actually the easiest one now.</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-heading"><span class="icon">🏗️</span>Which Builder Should You Use?</div>
+    <table class="simple-table">
+      <tr><th>Tool</th><th>Best For</th><th>Learning Curve</th><th>Free Tier?</th><th>Our Take</th></tr>
+      <tr class="highlight-row">
+        <td>⭐ Framer</td>
+        <td>Modern, beautiful sites. Tools. Landing pages.</td>
+        <td>Low — AI does most of it</td>
+        <td>Yes (with Framer subdomain)</td>
+        <td class="rec">Best overall for beginners in 2025</td>
+      </tr>
+      <tr>
+        <td>Webflow</td>
+        <td>Content sites, blogs, professional portfolios</td>
+        <td>Medium — has a learning curve</td>
+        <td>Yes (limited)</td>
+        <td>Powerful but takes a week to learn</td>
+      </tr>
+      <tr>
+        <td>Carrd</td>
+        <td>Single-page sites, link-in-bio pages</td>
+        <td>Very Low — easiest of all</td>
+        <td>Yes</td>
+        <td>For the simplest possible sites only</td>
+      </tr>
+      <tr>
+        <td>WordPress.com</td>
+        <td>Blogs, content-heavy sites</td>
+        <td>Low — familiar to many</td>
+        <td>Yes (with ads)</td>
+        <td>Good for pure content, weak for tools</td>
+      </tr>
+      <tr>
+        <td>Glide / Softr</td>
+        <td>Apps built on spreadsheets</td>
+        <td>Low</td>
+        <td>Yes (limited)</td>
+        <td>Best for directory / database sites</td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="section">
+    <div class="section-heading"><span class="icon">⚡</span>Build Your Website in Framer — Step by Step</div>
+    <div class="steps-list">
+      <div class="step-item">
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <h4>Go to framer.com and create a free account</h4>
+          <p>No credit card required. Use Google sign-in for fastest setup. You'll be inside the Framer editor in under 2 minutes.</p>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <h4>Use Framer AI to generate your first site</h4>
+          <p>Click "Start with AI." Type a description of your website: "A free tool that generates business names for small restaurants. Clean, modern design." Framer will generate a full website in seconds. This is your starting point.</p>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">3</div>
+        <div class="step-body">
+          <h4>Replace all placeholder text with your real content</h4>
+          <p>Click on any text and type. Replace the AI-generated placeholder text with YOUR headline, YOUR description, YOUR call-to-action. Use ChatGPT to write this copy if you're stuck.</p>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">4</div>
+        <div class="step-body">
+          <h4>Replace images with your own (or use AI-generated ones)</h4>
+          <p>Go to Unsplash.com for free photos. Or use Midjourney / DALL-E to generate custom images that match your brand. Drag and drop to replace.</p>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">5</div>
+        <div class="step-body">
+          <h4>Add your pages</h4>
+          <p>In the left panel, add: About page, Contact page, and any content pages you need. Duplicate the homepage layout and edit the content for each new page.</p>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">6</div>
+        <div class="step-body">
+          <h4>Preview on mobile and fix any issues</h4>
+          <p>Click the phone icon to see how your site looks on mobile. 70%+ of your visitors will be on their phones. Drag elements to fix any layout problems.</p>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">7</div>
+        <div class="step-body">
+          <h4>Publish your site</h4>
+          <p>Click "Publish." Your site is live at yourname.framer.app for free. You can connect a custom domain later for ~$10/year. Do NOT wait until it's "perfect" to publish.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-heading"><span class="icon">⚙️</span>Adding Real Functionality Without Code</div>
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-title">📝 Contact Forms</div>
+        <p style="margin-bottom:8px;"><strong>Tool:</strong> Tally.so (free) or Typeform</p>
+        <p>Create a form in Tally in 5 minutes. Copy the embed code. In Framer, add an "Embed" component and paste it. Done — you now have a working contact form that emails you responses.</p>
+      </div>
+      <div class="card">
+        <div class="card-title">💳 Taking Payments</div>
+        <p style="margin-bottom:8px;"><strong>Tool:</strong> Gumroad (free to start) or Lemon Squeezy</p>
+        <p>Create a product on Gumroad. Get the payment link. Add a button on your website that links to it. Gumroad handles the entire checkout. You get paid to your bank account.</p>
+      </div>
+      <div class="card">
+        <div class="card-title">📧 Email Collection</div>
+        <p style="margin-bottom:8px;"><strong>Tool:</strong> Beehiiv (free) or MailerLite</p>
+        <p>Create a free account, get an embed form code, paste it into Framer. Every email you collect is a direct line to your audience that no algorithm can take away.</p>
+      </div>
+      <div class="card">
+        <div class="card-title">🔧 Building Actual Tools</div>
+        <p style="margin-bottom:8px;"><strong>Tool:</strong> Softr + Airtable, or Glide</p>
+        <p>For tools that need a database (calculators, generators, directories): use Airtable as your database, Softr to build the frontend on top of it. No code, fully functional.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="callout-warn">
+    <span class="clabel">Common Mistake</span>
+    Spending 3 weeks making the website "look perfect" before anyone has seen it. Launch ugly. Then make it pretty after real users tell you what they actually care about. Pretty + useless beats ugly + useful every time, but ugly + useful beats beautiful + not-launched.
+  </div>
+
+  <div class="section">
+    <div class="section-heading"><span class="icon">🤖</span>AI & No-Code Tools for Phase 3</div>
+    <div class="tool-grid">
+      <div class="tool-card em">
+        <div class="tool-name">Framer AI</div>
+        <div class="tool-badges"><span class="badge emerging">Emerging</span><span class="badge freemium">Freemium</span><span class="badge nocode">No-Code</span><span class="badge beginner">Beginner</span></div>
+        <div class="tool-desc">Type a description, get a full website. Drag-and-drop editor to customize. Publish to a live URL instantly. The single best tool for beginners launching in 2025. Generates responsive designs automatically.</div>
+        <div class="tool-note">⚡ Free tier adds a Framer badge. $5/month removes it and lets you connect your own domain.</div>
+      </div>
+      <div class="tool-card t">
+        <div class="tool-name">Webflow</div>
+        <div class="tool-badges"><span class="badge traditional">Traditional</span><span class="badge freemium">Freemium</span><span class="badge nocode">No-Code</span></div>
+        <div class="tool-desc">More powerful than Framer for complex sites. Has a visual CMS for blogs and content. Steeper learning curve — watch 2–3 YouTube tutorials first. Better for long-term content sites.</div>
+        <div class="tool-note">⚡ Free tier has limitations. Takes 5–10 hours to feel comfortable.</div>
+      </div>
+      <div class="tool-card em">
+        <div class="tool-name">Glide Apps</div>
+        <div class="tool-badges"><span class="badge emerging">Emerging</span><span class="badge freemium">Freemium</span><span class="badge nocode">No-Code</span><span class="badge beginner">Beginner</span></div>
+        <div class="tool-desc">Build a web app from a Google Sheet or Airtable. Perfect for directories, calculators, and tools that need real data. The gap between "website" and "web app" disappears with Glide.</div>
+      </div>
+      <div class="tool-card em">
+        <div class="tool-name">Tally.so</div>
+        <div class="tool-badges"><span class="badge emerging">Emerging</span><span class="badge free">Free</span><span class="badge nocode">No-Code</span><span class="badge beginner">Beginner</span></div>
+        <div class="tool-desc">The best free form builder. Beautiful forms, logic branching, file uploads, payment collection. Replaces Typeform (which is expensive). Embed anywhere in 30 seconds.</div>
+      </div>
+      <div class="tool-card ai">
+        <div class="tool-name">ChatGPT / Claude (for copy)</div>
+        <div class="tool-badges"><span class="badge ai">AI</span><span class="badge freemium">Freemium</span><span class="badge beginner">Beginner</span></div>
+        <div class="tool-desc">Write all your website copy using AI. Headlines, descriptions, button text, about page, FAQ — give AI your one-sentence pitch and ask it to write each page. Edit the output. Done in an hour.</div>
+      </div>
+      <div class="tool-card ai">
+        <div class="tool-name">Midjourney / DALL-E 3</div>
+        <div class="tool-badges"><span class="badge ai">AI</span><span class="badge paid">Paid</span><span class="badge beginner">Beginner</span></div>
+        <div class="tool-desc">Generate custom images for your website. Hero images, illustrations, icons — described in plain English. Replaces the need for a graphic designer for basic visual needs.</div>
+        <div class="tool-note">⚡ Use Unsplash.com for free stock photos as an alternative.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-heading"><span class="icon">💬</span>Copy-Paste AI Prompts for Building</div>
+    <div class="prompt-wrap">
+      <div class="prompt-label">// Use this to write your entire homepage with AI</div>
+      <div class="prompt-box">Write the complete homepage copy for my website. Here is my one-sentence description:
+
+"<span class="ph">[paste your one-sentence description here]</span>"
+
+Target audience: <span class="ph">[describe your user]</span>
+Main problem I solve: <span class="ph">[the pain point]</span>
+How I make money: <span class="ph">[your monetization model]</span>
+
+Write:
+1. A headline (max 8 words) that speaks to the pain
+2. A subheadline (max 20 words) that explains the solution
+3. 3 feature bullets (each max 15 words)
+4. A call-to-action button text (3–5 words)
+5. A social proof line (make up a believable placeholder I can replace later)
+
+Make the tone: <span class="ph">[friendly/professional/witty — pick one]</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== PHASE 4 ===================== -->
+<div class="phase" id="p4">
+  <div class="phase-header">
+    <div class="phase-number-block"><div class="num">04</div><div class="label">Phase</div></div>
+    <div class="phase-title-block">
+      <span class="tag">Make It Look Real</span>
+      <h2>Design Your Website</h2>
+      <p>Good design isn't about making things pretty. It's about making things clear. A visitor should understand what your site does and what to do next within 5 seconds of arriving.</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-heading"><span class="icon">🎨</span>5 Design Rules That Actually Matter</div>
+    <div class="steps-list">
+      <div class="step-item">
+        <div class="step-num">1</div>
+        <div class="step-body"><h4>One clear button per page (your main CTA)</h4><p>Every page should have one obvious button that tells visitors what to do: "Try for Free", "Download Guide", "Start Now." If you have 5 buttons, visitors will click none of them.</p></div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">2</div>
+        <div class="step-body"><h4>Use maximum 2 fonts</h4><p>One for headings, one for body text. Framer and Webflow have built-in font pairings. Pick one and stick to it across every page. Mixing 4 fonts looks amateur.</p></div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">3</div>
+        <div class="step-body"><h4>Pick 3 colors and use only those</h4><p>One background color. One text color. One "action" color for buttons and links. That's your entire color palette. Consistency looks professional. Randomness looks broken.</p></div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">4</div>
+        <div class="step-body"><h4>Leave empty space — it's not wasted</h4><p>White space (empty areas) makes text easier to read and pages feel premium. If everything is crammed together, nothing stands out. When in doubt, add more padding.</p></div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">5</div>
+        <div class="step-body"><h4>Make text readable on all backgrounds</h4><p>Dark text on light backgrounds. Light text on dark backgrounds. Never light text on a busy photo without a dark overlay. If you have to squint, it fails.</p></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-heading"><span class="icon">🖼️</span>Where to Get Visual Assets for Free</div>
+    <div class="grid-3">
+      <div class="card"><div class="card-title">📸 Free Photos</div><ul><li><strong>Unsplash.com</strong> — High quality, free</li><li><strong>Pexels.com</strong> — Large variety</li><li><strong>Reshot.com</strong> — More unique, less stock-y</li></ul></div>
+      <div class="card"><div class="card-title">🎨 Icons & Graphics</div><ul><li><strong>Heroicons.com</strong> — Clean, free SVG icons</li><li><strong>Flaticon.com</strong> — Thousands of icons</li><li><strong>Storyset.com</strong> — Free illustrations</li></ul></div>
+      <div class="card"><div class="card-title">🤖 AI-Generated Images</div><ul><li><strong>DALL-E 3</strong> — via ChatGPT (free tier)</li><li><strong>Adobe Firefly</strong> — Free, commercially safe</li><li><strong>Canva AI</strong> — Good for banners</li></ul></div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-heading"><span class="icon">🤖</span>Design Tools for Non-Designers</div>
+    <div class="tool-grid">
+      <div class="tool-card t">
+        <div class="tool-name">Canva</div>
+        <div class="tool-badges"><span class="badge traditional">Traditional</span><span class="badge freemium">Freemium</span><span class="badge nocode">No-Code</span><span class="badge beginner">Beginner</span></div>
+        <div class="tool-desc">The world's easiest design tool. Make logos, social banners, blog thumbnails, and presentation graphics. Drag-and-drop, thousands of templates. Free tier is generous. If you can use PowerPoint, you can use Canva.</div>
+      </div>
+      <div class="tool-card ai">
+        <div class="tool-name">Looka (Logo AI)</div>
+        <div class="tool-badges"><span class="badge ai">AI</span><span class="badge paid">~$20 one-time</span><span class="badge beginner">Beginner</span></div>
+        <div class="tool-desc">Generate a professional logo from your brand name and style preferences. Worth the one-time cost to have something that looks real. Free preview, pay to download.</div>
+      </div>
+      <div class="tool-card em">
+        <div class="tool-name">Relume AI (Site Builder)</div>
+        <div class="tool-badges"><span class="badge emerging">Emerging</span><span class="badge freemium">Freemium</span><span class="badge beginner">Beginner</span></div>
+        <div class="tool-desc">Describe your website in text → get a full sitemap and wireframe → export directly to Webflow or Figma. The fastest path from idea to structured layout.</div>
+      </div>
+      <div class="tool-card em">
+        <div class="tool-name">Framer AI (Design Mode)</div>
+        <div class="tool-badges"><span class="badge emerging">Emerging</span><span class="badge freemium">Freemium</span><span class="badge nocode">No-Code</span><span class="badge beginner">Beginner</span></div>
+        <div class="tool-desc">Select any section of your Framer website and ask AI to redesign it: "make this section look more modern" or "change this to a dark theme." Instant design iteration without design skills.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== PHASE 5 ===================== -->
+<div class="phase" id="p5">
+  <div class="phase-header">
+    <div class="phase-number-block"><div class="num">05</div><div class="label">Phase</div></div>
+    <div class="phase-title-block">
+      <span class="tag">Go Live</span>
+      <h2>Launch Your Website</h2>
+      <p>Launching means getting a real domain, going live, and telling the world you exist. This phase takes one day. There is no excuse to delay it.</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-heading"><span class="icon">🌐</span>Getting a Domain Name</div>
+    <div class="steps-list">
+      <div class="step-item">
+        <div class="step-num">1</div>
+        <div class="step-body"><h4>Choose a domain name</h4><p>Keep it short (under 3 words), easy to spell, and ending in .com if possible. Use your brand name. Avoid hyphens (people forget them). Check availability at namecheap.com or Cloudflare.</p></div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">2</div>
+        <div class="step-body"><h4>Buy it from Cloudflare Registrar</h4><p>Go to cloudflare.com/products/registrar. Cloudflare charges the exact wholesale cost — typically $8–10/year for a .com with no markup. Avoid GoDaddy which charges 2–3x more and uses dark patterns.</p></div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">3</div>
+        <div class="step-body"><h4>Connect your domain to your website builder</h4><p>In Framer: Settings → Custom Domain → type your domain name → follow the DNS instructions. In Webflow: same process. Takes 5 minutes to set up, up to 24 hours to activate (usually much faster).</p></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-heading"><span class="icon">🚀</span>Pre-Launch Checklist</div>
+    <div class="checklist">
+      <div class="check-item"><div class="check-box"></div>Homepage headline is clear and specific — not generic</div>
+      <div class="check-item"><div class="check-box"></div>There is one obvious button telling visitors what to do</div>
+      <div class="check-item"><div class="check-box"></div>The site works on mobile (check on your actual phone)</div>
+      <div class="check-item"><div class="check-box"></div>All links actually work (click every single one)</div>
+      <div class="check-item"><div class="check-box"></div>There are no typos in headings (proofread twice)</div>
+      <div class="check-item"><div class="check-box"></div>Your contact form works (test it by sending yourself a message)</div>
+      <div class="check-item"><div class="check-box"></div>Google Analytics OR Plausible is installed</div>
+      <div class="check-item"><div class="check-box"></div>Your site has an About page and Contact page</div>
+      <div class="check-item"><div class="check-box"></div>You have submitted your URL to Google Search Console</div>
+      <div class="check-item"><div class="check-box"></div>You have told at least 3 real people to visit and give feedback</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-heading"><span class="icon">🔒</span>Basic Security (5 Minutes, Non-Negotiable)</div>
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-title">✅ What Your No-Code Tool Handles Automatically</div>
+        <ul>
+          <li>SSL certificate (the padlock in the browser) — free and automatic</li>
+          <li>DDoS protection — Framer and Webflow handle this</li>
+          <li>Secure hosting infrastructure — not your problem</li>
+          <li>Form spam filtering — use Tally which has built-in protection</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title">✅ What You Need to Do Yourself</div>
+        <ul>
+          <li>Use a strong, unique password for every tool you sign up to</li>
+          <li>Enable two-factor authentication on Framer, your domain registrar, and email</li>
+          <li>Add a Privacy Policy page (use Termly.io — generates one free)</li>
+          <li>Add a Cookie notice if you use analytics (required in Europe)</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-heading"><span class="icon">🤖</span>Tools for Phase 5</div>
+    <div class="tool-grid">
+      <div class="tool-card t">
+        <div class="tool-name">Cloudflare Registrar</div>
+        <div class="tool-badges"><span class="badge traditional">Traditional</span><span class="badge paid">~$10/year</span><span class="badge beginner">Beginner</span></div>
+        <div class="tool-desc">Buy your domain here. At-cost pricing, no hidden renewal fees, free DNS management, free SSL, free CDN. The best value domain registrar available.</div>
+      </div>
+      <div class="tool-card t">
+        <div class="tool-name">Google Search Console</div>
+        <div class="tool-badges"><span class="badge traditional">Traditional</span><span class="badge free">Free</span><span class="badge beginner">Beginner</span></div>
+        <div class="tool-desc">Submit your website to Google so it gets indexed and found in search results. Free, takes 5 minutes. Without this, Google may take months to find your site on its own.</div>
+      </div>
+      <div class="tool-card em">
+        <div class="tool-name">Plausible Analytics</div>
+        <div class="tool-badges"><span class="badge emerging">Emerging</span><span class="badge paid">$9/month</span><span class="badge beginner">Beginner</span></div>
+        <div class="tool-desc">Simple, privacy-first analytics. Shows visitors, page views, traffic sources in a clean one-page dashboard. No cookie banner needed. Use instead of Google Analytics which is complex and overwhelming.</div>
+      </div>
+      <div class="tool-card t">
+        <div class="tool-name">Termly.io</div>
+        <div class="tool-badges"><span class="badge traditional">Traditional</span><span class="badge free">Free tier</span><span class="badge beginner">Beginner</span></div>
+        <div class="tool-desc">Generates Privacy Policy and Terms of Service pages automatically. Required for any website that collects emails or uses analytics. Free tier is enough. Copy the generated text and add it as a page on your site.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== PHASE 6 ===================== -->
+<div class="phase" id="p6">
+  <div class="phase-header">
+    <div class="phase-number-block"><div class="num">06</div><div class="label">Phase</div></div>
+    <div class="phase-title-block">
+      <span class="tag">The Long Game</span>
+      <h2>Grow Your Website</h2>
+      <p>Launch day is not the finish line — it's the starting gun. Growth is a slow, compounding process. The websites that win are the ones that show up consistently for 12 months.</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-heading"><span class="icon">🔎</span>Getting Found on Google (SEO Basics)</div>
+    <div class="callout-tip">
+      <span class="clabel">Why SEO Matters for Beginners</span>
+      SEO is the only marketing channel that keeps working even when you stop. One well-optimized article can bring you visitors every single day for years, completely free. It takes 3–6 months to see results, which is why you start now.
+    </div>
+    <div class="steps-list">
+      <div class="step-item">
+        <div class="step-num">1</div>
+        <div class="step-body"><h4>Write a title and description for every page</h4><p>In Framer/Webflow, each page has SEO settings. Write a title (max 60 characters) and description (max 160 characters) for every page. Include the keyword people would search to find that page.</p></div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">2</div>
+        <div class="step-body"><h4>Write content that answers real questions</h4><p>Use Ubersuggest or Google's autocomplete to find questions people ask about your topic. Write one clear article answering each question. This is how you get organic traffic — be the best answer to a real question.</p></div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">3</div>
+        <div class="step-body"><h4>Get your first backlinks (other sites linking to you)</h4><p>Post your website in relevant Reddit communities, niche Facebook Groups, and Product Hunt. Each mention is a signal to Google that you're real. Don't spam — provide value first, share your link second.</p></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-heading"><span class="icon">📣</span>Getting Your First 100 Visitors</div>
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-title">🔴 Reddit Strategy</div>
+        <ul>
+          <li>Find 3 subreddits where your audience lives</li>
+          <li>Spend 2 weeks answering questions and being helpful</li>
+          <li>Then post: "I built a free tool for [problem] — here's the link"</li>
+          <li>Be honest. Reddit users hate marketing speak but love genuine builders.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title">🚀 Product Hunt</div>
+        <ul>
+          <li>List your website on producthunt.com — free</li>
+          <li>Write an honest "maker story" about why you built it</li>
+          <li>Share the Product Hunt link with your network on launch day</li>
+          <li>Even 50 upvotes = 500–2000 visitors in one day</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title">📘 Facebook / LinkedIn Groups</div>
+        <ul>
+          <li>Search for groups related to your niche</li>
+          <li>Join 5–10 groups with active members</li>
+          <li>Add value with posts and comments for 2 weeks</li>
+          <li>Then share your site as a resource, not an ad</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title">✉️ Build an Email List from Day One</div>
+        <ul>
+          <li>Add an email signup form on your homepage (Beehiiv, MailerLite)</li>
+          <li>Offer something in exchange: a free guide, early access, weekly tips</li>
+          <li>100 real email subscribers is worth more than 10,000 Twitter followers</li>
+          <li>Email is the one channel you fully own</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-heading"><span class="icon">💰</span>Turning Traffic Into Money</div>
+    <table class="simple-table">
+      <tr><th>Method</th><th>How to Set It Up</th><th>When to Start</th><th>Realistic Monthly Earnings at 5k visitors</th></tr>
+      <tr><td>Google AdSense</td><td>Apply at google.com/adsense, add one code snippet to your site</td><td>After 50+ pieces of content</td><td>₹1,500–₹5,000</td></tr>
+      <tr><td>Affiliate Links</td><td>Join programs (Amazon, Hostinger, Semrush). Add links to relevant articles.</td><td>From day one</td><td>₹3,000–₹15,000</td></tr>
+      <tr><td>Digital Product (PDF/Guide)</td><td>Write a guide, list on Gumroad, link from your site</td><td>After 500 visitors/month</td><td>₹5,000–₹30,000</td></tr>
+      <tr class="highlight-row"><td>⭐ Freemium Upgrade</td><td>Offer basic tool free, charge for extra features/exports via Gumroad</td><td>After 1000 users try the free version</td><td>₹8,000–₹40,000</td></tr>
+    </table>
+  </div>
+
+  <div class="section">
+    <div class="section-heading"><span class="icon">📊</span>What to Track (And What to Ignore)</div>
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-title">✅ Numbers That Tell the Truth</div>
+        <ul>
+          <li><strong>Returning visitors</strong> — are people coming back?</li>
+          <li><strong>Email signups</strong> — are people trusting you with their email?</li>
+          <li><strong>Conversion rate</strong> — what % of visitors take the main action?</li>
+          <li><strong>Top traffic source</strong> — where are visitors actually coming from?</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title">❌ Numbers That Lie</div>
+        <ul>
+          <li>Total page views (if visitors immediately leave)</li>
+          <li>Social media "likes" and "impressions"</li>
+          <li>How many countries visited (interesting, not useful)</li>
+          <li>Comparing your month 1 to a competitor's year 3</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-heading"><span class="icon">🗓️</span>12-Month Growth Roadmap</div>
+    <table class="simple-table">
+      <tr><th>Month</th><th>Focus</th><th>Goal</th></tr>
+      <tr><td>1–2</td><td>Get real users, not perfect product</td><td>100 real human visitors who aren't your family</td></tr>
+      <tr><td>3–4</td><td>SEO content and first feedback loop</td><td>500 monthly visitors, 50 email subscribers</td></tr>
+      <tr><td>5–6</td><td>First monetization attempt</td><td>First ₹1 earned online (this moment changes everything)</td></tr>
+      <tr><td>7–9</td><td>Double down on what's working</td><td>2,000+ monthly visitors, ₹5,000+/month</td></tr>
+      <tr><td>10–12</td><td>Add features users are asking for</td><td>Sustainable traffic source, consistent monthly income</td></tr>
+    </table>
+  </div>
+
+  <div class="section">
+    <div class="section-heading"><span class="icon">🤖</span>Growth Tools for Phase 6</div>
+    <div class="tool-grid">
+      <div class="tool-card t">
+        <div class="tool-name">Google Search Console</div>
+        <div class="tool-badges"><span class="badge traditional">Traditional</span><span class="badge free">Free</span><span class="badge beginner">Beginner</span></div>
+        <div class="tool-desc">Shows exactly which Google searches lead people to your site. After 3 months, it tells you what's working. Check weekly. The most honest feedback on your SEO you'll ever get.</div>
+      </div>
+      <div class="tool-card ai">
+        <div class="tool-name">Claude / ChatGPT (for content)</div>
+        <div class="tool-badges"><span class="badge ai">AI</span><span class="badge freemium">Freemium</span><span class="badge beginner">Beginner</span></div>
+        <div class="tool-desc">Write blog posts, social media posts, email newsletters, and product descriptions at 10x the speed. Give AI the keyword you're targeting and ask it to write a first draft. You edit and publish.</div>
+        <div class="tool-note">⚡ Always edit AI content before publishing. Add your personal examples and voice.</div>
+      </div>
+      <div class="tool-card em">
+        <div class="tool-name">Beehiiv</div>
+        <div class="tool-badges"><span class="badge emerging">Emerging</span><span class="badge free">Free up to 2,500 subscribers</span><span class="badge beginner">Beginner</span></div>
+        <div class="tool-desc">The best free newsletter platform. Cleaner than Mailchimp. Has built-in monetization (paid subscriptions, ad network). Your email list is your most valuable business asset — start collecting it now.</div>
+      </div>
+      <div class="tool-card em">
+        <div class="tool-name">Taplio / Typefully</div>
+        <div class="tool-badges"><span class="badge emerging">Emerging</span><span class="badge freemium">Freemium</span><span class="badge advanced">Advanced</span></div>
+        <div class="tool-desc">AI-powered social media content tools. Write and schedule LinkedIn or X posts optimized for engagement. Use when you're ready to build an audience on social to drive traffic.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-heading"><span class="icon">💬</span>AI Prompts for Content & Growth</div>
+    <div class="prompt-wrap">
+      <div class="prompt-label">// Write an SEO blog post with AI</div>
+      <div class="prompt-box">Write a complete blog post for my website about: "<span class="ph">[your keyword / topic]</span>"
+
+My website is about: <span class="ph">[your one-sentence description]</span>
+Target reader: <span class="ph">[describe your audience]</span>
+
+Requirements:
+- Title should include the keyword naturally
+- Length: 600–800 words
+- Use simple language (not academic or overly formal)
+- Include a practical tip or example in every section
+- End with a clear call to action pointing to my main page
+- Do NOT use buzzwords like "game-changer" or "revolutionize"
+
+Make it actually useful, not just keyword-stuffed.</div>
+    </div>
+    <div class="prompt-wrap">
+      <div class="prompt-label">// Reddit post that doesn't get you banned</div>
+      <div class="prompt-box">I want to share my website in a Reddit community without being spammy or getting banned. My website: <span class="ph">[description]</span>. Target subreddit: r/<span class="ph">[subreddit name]</span>.
+
+Write a genuine, helpful Reddit post that:
+1. Starts by describing the problem I solved (not the solution)
+2. Explains why I built it in a human, relatable way
+3. Mentions the tool naturally toward the end
+4. Invites feedback, not clicks
+5. Sounds like a real person wrote it, not a marketer
+
+Keep it under 200 words. No hype. No exclamation marks.</div>
+    </div>
+  </div>
+
+  <div class="callout-gold">
+    <span class="clabel">The Most Important Thing</span>
+    Most people who want to build a website never launch one. The gap between "I have an idea" and "I have a live website" is 99% fear and 1% difficulty. With the tools in this blueprint, you can have a real, live website in 48 hours. The only question is whether you'll start today.
+  </div>
+</div>
+
+</div><!-- end content -->
+
+<!-- MASTER TABLE -->
+<div class="master-wrap" id="master">
+  <div class="hero-eyebrow">Complete Summary</div>
+  <h2>Your Master Blueprint</h2>
+  <p class="sub">Every phase, step, tool, and deliverable — in one table you can follow from top to bottom.</p>
+  <div style="overflow-x:auto;">
+  <table class="master-table">
+    <tr>
+      <th>Phase</th>
+      <th>Step</th>
+      <th>Tools</th>
+      <th>What You Do</th>
+      <th>What You Have When Done</th>
+    </tr>
+    <tr>
+      <td><span class="phase-pill" style="background:rgba(200,84,26,0.1);color:#c8541a">01 Find Idea</span></td>
+      <td>Brainstorm Ideas</td>
+      <td class="tools-mono">ChatGPT, Claude</td>
+      <td>Ask AI for 15 niche website ideas matching your interests</td>
+      <td class="output-green">✓ 3 shortlisted ideas</td>
+    </tr>
+    <tr>
+      <td><span class="phase-pill" style="background:rgba(200,84,26,0.1);color:#c8541a">01 Find Idea</span></td>
+      <td>Validate Demand</td>
+      <td class="tools-mono">Google Trends, Ubersuggest, Reddit</td>
+      <td>Check search volume, read Reddit complaints, confirm audience exists</td>
+      <td class="output-green">✓ 1 validated idea with demand proof</td>
+    </tr>
+    <tr>
+      <td><span class="phase-pill" style="background:rgba(200,84,26,0.1);color:#c8541a">01 Find Idea</span></td>
+      <td>Competitor Research</td>
+      <td class="tools-mono">Perplexity, G2, Capterra</td>
+      <td>Find 3 competitors, read their negative reviews, find the gap</td>
+      <td class="output-green">✓ List of 5 features competitors are missing</td>
+    </tr>
+    <tr>
+      <td><span class="phase-pill" style="background:rgba(200,84,26,0.1);color:#c8541a">01 Find Idea</span></td>
+      <td>Write Your Pitch</td>
+      <td class="tools-mono">Claude</td>
+      <td>Complete: "My site helps [X] do [Y] without [Z]"</td>
+      <td class="output-green">✓ One-sentence pitch</td>
+    </tr>
+    <tr>
+      <td><span class="phase-pill" style="background:rgba(26,107,92,0.12);color:#1a6b5c">02 Plan</span></td>
+      <td>Define MVP</td>
+      <td class="tools-mono">Notion, ChatGPT</td>
+      <td>Write the ONE core feature. Cross off everything else.</td>
+      <td class="output-green">✓ MVP definition (fits in 1 sentence)</td>
+    </tr>
+    <tr>
+      <td><span class="phase-pill" style="background:rgba(26,107,92,0.12);color:#1a6b5c">02 Plan</span></td>
+      <td>Plan Pages</td>
+      <td class="tools-mono">Whimsical, pen+paper</td>
+      <td>Map out Homepage, Tool/Content page, About, Contact</td>
+      <td class="output-green">✓ Simple site map (4–6 pages)</td>
+    </tr>
+    <tr>
+      <td><span class="phase-pill" style="background:rgba(26,107,92,0.12);color:#1a6b5c">02 Plan</span></td>
+      <td>Choose Monetization</td>
+      <td class="tools-mono">Claude (for advice)</td>
+      <td>Pick: ads / affiliate / digital product / freemium</td>
+      <td class="output-green">✓ Monetization strategy decided</td>
+    </tr>
+    <tr>
+      <td><span class="phase-pill" style="background:rgba(107,63,160,0.1);color:#6b3fa0">03 Build</span></td>
+      <td>Create Account</td>
+      <td class="tools-mono">Framer.com</td>
+      <td>Sign up, start a new project</td>
+      <td class="output-green">✓ Framer account ready</td>
+    </tr>
+    <tr>
+      <td><span class="phase-pill" style="background:rgba(107,63,160,0.1);color:#6b3fa0">03 Build</span></td>
+      <td>Generate First Site</td>
+      <td class="tools-mono">Framer AI</td>
+      <td>Use AI generation with your pitch sentence</td>
+      <td class="output-green">✓ AI-generated site scaffold</td>
+    </tr>
+    <tr>
+      <td><span class="phase-pill" style="background:rgba(107,63,160,0.1);color:#6b3fa0">03 Build</span></td>
+      <td>Write All Copy</td>
+      <td class="tools-mono">Claude / ChatGPT</td>
+      <td>Generate headlines, descriptions, CTAs with AI. Edit and paste in.</td>
+      <td class="output-green">✓ All pages have real content</td>
+    </tr>
+    <tr>
+      <td><span class="phase-pill" style="background:rgba(107,63,160,0.1);color:#6b3fa0">03 Build</span></td>
+      <td>Add Functionality</td>
+      <td class="tools-mono">Tally, Gumroad, Beehiiv</td>
+      <td>Embed contact form, email signup, payment link</td>
+      <td class="output-green">✓ Working forms and payment ready</td>
+    </tr>
+    <tr>
+      <td><span class="phase-pill" style="background:rgba(26,74,122,0.1);color:#1a4a7a">04 Design</span></td>
+      <td>Pick Colors & Fonts</td>
+      <td class="tools-mono">Framer settings, Canva</td>
+      <td>Choose 3 colors + 2 fonts. Apply consistently across all pages.</td>
+      <td class="output-green">✓ Consistent visual identity</td>
+    </tr>
+    <tr>
+      <td><span class="phase-pill" style="background:rgba(26,74,122,0.1);color:#1a4a7a">04 Design</span></td>
+      <td>Get a Logo</td>
+      <td class="tools-mono">Looka, Canva</td>
+      <td>Generate or design a simple logo. PNG format, dark + light versions.</td>
+      <td class="output-green">✓ Logo file ready</td>
+    </tr>
+    <tr>
+      <td><span class="phase-pill" style="background:rgba(26,74,122,0.1);color:#1a4a7a">04 Design</span></td>
+      <td>Source Images</td>
+      <td class="tools-mono">Unsplash, DALL-E 3</td>
+      <td>Replace all placeholder images with real, relevant visuals</td>
+      <td class="output-green">✓ All images replaced, site looks real</td>
+    </tr>
+    <tr>
+      <td><span class="phase-pill" style="background:rgba(26,74,122,0.1);color:#1a4a7a">04 Design</span></td>
+      <td>Mobile Check</td>
+      <td class="tools-mono">Your actual phone</td>
+      <td>View every page on mobile. Fix anything broken or too small.</td>
+      <td class="output-green">✓ Site looks good on mobile</td>
+    </tr>
+    <tr>
+      <td><span class="phase-pill" style="background:rgba(184,135,10,0.1);color:#b8870a">05 Launch</span></td>
+      <td>Buy Domain</td>
+      <td class="tools-mono">Cloudflare Registrar</td>
+      <td>Choose domain name, purchase for ~$10/year</td>
+      <td class="output-green">✓ yoursite.com owned</td>
+    </tr>
+    <tr>
+      <td><span class="phase-pill" style="background:rgba(184,135,10,0.1);color:#b8870a">05 Launch</span></td>
+      <td>Connect Domain</td>
+      <td class="tools-mono">Framer + Cloudflare</td>
+      <td>Follow DNS connection steps in Framer settings</td>
+      <td class="output-green">✓ Live on your custom domain</td>
+    </tr>
+    <tr>
+      <td><span class="phase-pill" style="background:rgba(184,135,10,0.1);color:#b8870a">05 Launch</span></td>
+      <td>Setup Analytics</td>
+      <td class="tools-mono">Plausible / Google Analytics</td>
+      <td>Install analytics tracking on all pages</td>
+      <td class="output-green">✓ Visitor data being collected</td>
+    </tr>
+    <tr>
+      <td><span class="phase-pill" style="background:rgba(184,135,10,0.1);color:#b8870a">05 Launch</span></td>
+      <td>Submit to Google</td>
+      <td class="tools-mono">Google Search Console</td>
+      <td>Add site, submit sitemap, request indexing</td>
+      <td class="output-green">✓ Google knows your site exists</td>
+    </tr>
+    <tr>
+      <td><span class="phase-pill" style="background:rgba(160,26,46,0.1);color:#a01a2e">06 Grow</span></td>
+      <td>First Share</td>
+      <td class="tools-mono">Reddit, Facebook Groups</td>
+      <td>Post genuine "I built this" story in 3 communities</td>
+      <td class="output-green">✓ First 100 real visitors</td>
+    </tr>
+    <tr>
+      <td><span class="phase-pill" style="background:rgba(160,26,46,0.1);color:#a01a2e">06 Grow</span></td>
+      <td>Product Hunt</td>
+      <td class="tools-mono">producthunt.com</td>
+      <td>Create listing, write maker story, launch</td>
+      <td class="output-green">✓ First traffic spike</td>
+    </tr>
+    <tr>
+      <td><span class="phase-pill" style="background:rgba(160,26,46,0.1);color:#a01a2e">06 Grow</span></td>
+      <td>SEO Content</td>
+      <td class="tools-mono">Claude, Ubersuggest</td>
+      <td>Publish 1 keyword-targeted article per week</td>
+      <td class="output-green">✓ 12 articles published in 3 months</td>
+    </tr>
+    <tr>
+      <td><span class="phase-pill" style="background:rgba(160,26,46,0.1);color:#a01a2e">06 Grow</span></td>
+      <td>First Revenue</td>
+      <td class="tools-mono">Gumroad, Google AdSense</td>
+      <td>Enable your chosen monetization method</td>
+      <td class="output-green">✓ First money earned from your website</td>
+    </tr>
+  </table>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <div>
+    <div class="footer-title">Zero to Website — No-Code Blueprint</div>
+    <div class="footer-sub">Built for anyone. Not just developers.</div>
+  </div>
+  <div class="footer-mono">6 PHASES · ZERO CODE REQUIRED · 2025–2026</div>
+</div>
+
+<script>
+const navPills = document.querySelectorAll('.nav-pill');
+const sections = document.querySelectorAll('[id]');
+
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      navPills.forEach(n => {
+        n.classList.toggle('active', n.getAttribute('href') === '#' + e.target.id);
+      });
+    }
+  });
+}, { threshold: 0.2 });
+
+sections.forEach(s => obs.observe(s));
+
+navPills.forEach(p => {
+  p.addEventListener('click', e => {
+    e.preventDefault();
+    document.querySelector(p.getAttribute('href'))?.scrollIntoView({ behavior: 'smooth' });
+  });
+});
+</script>
+</body>
+</html>
